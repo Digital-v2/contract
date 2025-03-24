@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+pragma solidity 0.8.28;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
@@ -29,7 +29,7 @@ contract MovieDOMToken is ERC20, ERC20Permit {
      * @dev Burns a specific amount of the caller's tokens
      * @param amount The amount of tokens to burn
      */
-    function burn(uint256 amount) public virtual {
+    function burn(uint256 amount) external virtual {
         _burn(_msgSender(), amount);
     }
 
@@ -38,7 +38,7 @@ contract MovieDOMToken is ERC20, ERC20Permit {
      * @param account The account whose tokens will be burned
      * @param amount The amount of tokens to burn
      */
-    function burnFrom(address account, uint256 amount) public virtual {
+    function burnFrom(address account, uint256 amount) external virtual {
         uint256 currentAllowance = allowance(account, _msgSender());
         require(
             currentAllowance >= amount,
